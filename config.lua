@@ -14,8 +14,8 @@ Config.LargeRewardAmount = 1 -- three rewards
 Config.GoldChance = 80 -- (80 = 20% changce of not finding gold) / (70 = 30% changce of not finding gold).. and so on
 
 -- Movement system
-Config.MinMovementDistance = 1.5 -- Distance minimum en mètres à parcourir
-Config.SpotMemoryTime = 300000 -- 5 minutes avant reset automatique
+Config.MinMovementDistance = 1.5 -- Minimum distance to move before the player can goldpan again
+Config.SpotMemoryTime = 300000 -- 5 minutes in milliseconds
 
 Config.WaterTypes = {
     [1] =  {['name'] = 'San Luis River',       ['waterhash'] = -1504425495, ['watertype'] = 'river'},
