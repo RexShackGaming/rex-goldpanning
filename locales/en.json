@@ -1,6 +1,7 @@
 {
     "cl_lang_1" : "you need to be by the river to goldpan!",
     "cl_lang_2" : "you are already gold panning!",
+    "cl_lang_3" : "You need to move further away to continue gold panning!",
     "sv_lang_1" : "not much in this pan",
     "sv_lang_2" : "Gold Found 🌟",
     "sv_lang_3" : " found a gold nugget!",

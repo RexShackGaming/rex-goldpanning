@@ -1,6 +1,8 @@
 local RSGCore = exports['rsg-core']:GetCoreObject()
 local isBusy = false
 local canPan = false
+local lastPanningCoords = nil
+local prop_goldpan
 lib.locale()
 
 -- ensure prop is loaded
@@ -12,6 +14,17 @@ local function LoadModel(model)
         attempts = attempts + 1
     end
     return IsModelValid(model)
+end
+
+-- function to check if you can goldpan at this location
+local function CanPanAtLocation(coords)
+    if lastPanningCoords then
+        local distance = #(vector2(coords.x, coords.y) - vector2(lastPanningCoords.x, lastPanningCoords.y))
+        if distance < Config.MinMovementDistance then
+            return false
+        end
+    end
+    return true
 end
 
 -- attach gold pan to ped
@@ -55,7 +68,7 @@ end
 local function DeletePan(entity)
     DeleteObject(entity)
     DeleteEntity(entity)
-    Wait(100)          
+    Wait(100)
     ClearPedTasks(cache.ped)
 end
 
@@ -63,9 +76,19 @@ RegisterNetEvent('rex-goldpanning:client:startgoldpanning')
 AddEventHandler('rex-goldpanning:client:startgoldpanning', function()
     local coords = GetEntityCoords(cache.ped)
     local water = Citizen.InvokeNative(0x5BA7A68A346A5A91, coords.x, coords.y, coords.z)
+    
+    -- can pan at location check
+    if not CanPanAtLocation(coords) then
+        lib.notify({ 
+            title = locale('cl_lang_3'), 
+            type = 'error', 
+            duration = 5000 
+        })
+        return
+    end
+    
     if not isBusy then
-
-        for k,v in pairs(Config.WaterTypes) do 
+        for k,v in pairs(Config.WaterTypes) do
             if water == Config.WaterTypes[k]["waterhash"] and IsEntityInWater(cache.ped) then
                 canPan = true
                 break
@@ -81,8 +104,12 @@ AddEventHandler('rex-goldpanning:client:startgoldpanning', function()
             GoldShake()
             local randomwait = math.random(12000,28000)
             Wait(randomwait)
-            DeletePan(prop_goldpan) 
+            DeletePan(prop_goldpan)
             TriggerServerEvent('rex-goldpanning:server:givereward')
+            
+            -- record last panning coord
+            lastPanningCoords = coords
+            
             isBusy = false
             canPan = false
         else
