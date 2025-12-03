@@ -8,10 +8,11 @@ Config.RewardItems = {
 }
 
 -- set the amount of nuggets to give
-Config.SmallRewardAmount = 1 -- one reward
-Config.MediumRewardAmount = 1 -- two rewards
-Config.LargeRewardAmount = 1 -- three rewards
-Config.GoldChance = 80 -- (80 = 20% changce of not finding gold) / (70 = 30% changce of not finding gold).. and so on
+Config.GoldChance = 65          -- % chance to find anything
+Config.SmallRewardAmount  = 1-3
+Config.MediumRewardAmount = 3-5
+Config.LargeRewardAmount  = 5-8
+Config.Cooldown = 10 -- seconds between pans
 
 -- Movement system
 Config.MinMovementDistance = 1.5 -- Minimum distance to move before the player can goldpan again
