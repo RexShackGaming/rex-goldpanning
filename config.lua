@@ -8,10 +8,10 @@ Config.RewardItems = {
 }
 
 -- set the amount of nuggets to give
-Config.GoldChance = 65          -- % chance to find anything
-Config.SmallRewardAmount  = 1-3
-Config.MediumRewardAmount = 3-5
-Config.LargeRewardAmount  = 5-8
+Config.GoldChance = 65 -- % chance to find anything
+Config.SmallRewardAmount  = 1
+Config.MediumRewardAmount = 2
+Config.LargeRewardAmount  = 3
 Config.Cooldown = 10 -- seconds between pans
 
 -- Movement system

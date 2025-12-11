@@ -67,26 +67,16 @@ RegisterServerEvent('rex-goldpanning:server:givereward', function()
         TriggerClientEvent('rsg-inventory:client:ItemBox', src, RSGCore.Shared.Items[item], 'add', Config.SmallRewardAmount)
         TriggerClientEvent('ox_lib:notify', src, { title = locale('sv_lang_1'), type = 'success' })
         TriggerEvent('rsg-log:server:CreateLog', 'goldpanning', locale('sv_lang_2'), 'yellow', firstname..' '..lastname..locale('sv_lang_3'))
-
     elseif roll <= 80 then -- medium reward
-        local item1 = Config.RewardItems[math.random(#Config.RewardItems)]
-        local item2 = Config.RewardItems[math.random(#Config.RewardItems)]
-        local qty = Config.MediumRewardAmount
-
-        Player.Functions.AddItem(item1, qty)
-        Player.Functions.AddItem(item2, qty)
-        TriggerClientEvent('rsg-inventory:client:ItemBox', src, RSGCore.Shared.Items[item1], 'add', qty)
-        TriggerClientEvent('rsg-inventory:client:ItemBox', src, RSGCore.Shared.Items[item2], 'add', qty)
+        local item = Config.RewardItems[math.random(#Config.RewardItems)]
+        Player.Functions.AddItem(item, Config.MediumRewardAmount)
+        TriggerClientEvent('rsg-inventory:client:ItemBox', src, RSGCore.Shared.Items[item], 'add', Config.MediumRewardAmount)
         TriggerClientEvent('ox_lib:notify', src, { title = locale('sv_lang_4'), type = 'success' })
         TriggerEvent('rsg-log:server:CreateLog', 'goldpanning', locale('sv_lang_5'), 'yellow', firstname..' '..lastname..locale('sv_lang_6'))
-
     else -- large reward
-        local qty = Config.LargeRewardAmount
-        for i = 1, 3 do
-            local item = Config.RewardItems[math.random(#Config.RewardItems)]
-            Player.Functions.AddItem(item, qty)
-            TriggerClientEvent('rsg-inventory:client:ItemBox', src, RSGCore.Shared.Items[item], 'add', qty)
-        end
+        local item = Config.RewardItems[math.random(#Config.RewardItems)]
+        Player.Functions.AddItem(item, Config.LargeRewardAmount)
+        TriggerClientEvent('rsg-inventory:client:ItemBox', src, RSGCore.Shared.Items[item], 'add', Config.LargeRewardAmount)
         TriggerClientEvent('ox_lib:notify', src, { title = locale('sv_lang_7'), type = 'success' })
         TriggerEvent('rsg-log:server:CreateLog', 'goldpanning', locale('sv_lang_8'), 'yellow', firstname..' '..lastname..locale('sv_lang_9'))
     end

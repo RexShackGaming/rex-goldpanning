@@ -5,7 +5,7 @@ game 'rdr3'
 name 'rex-goldpanning'
 author 'RexShackGaming'
 description 'Gold panning system for RSG Framework'
-version '2.0.5'
+version '2.0.6'
 url 'https://discord.gg/YUV7ebzkqs'
 
 shared_scripts {
